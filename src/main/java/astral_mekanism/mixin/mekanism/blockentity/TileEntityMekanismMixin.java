@@ -43,6 +43,8 @@ public class TileEntityMekanismMixin {
     @Inject(method = "onUpdateServer", at = @At("HEAD"))
     private void astral_mekanism$onUpdateServerInject(CallbackInfo ci) {
         if (((IUpgradeTile) (Object) this).supportsUpgrades()) {
+            astral_mekanism$syncCobblestoneSupply();
+
             if (upgradeComponent.isUpgradeInstalled(AMEUpgrade.WATER_SUPPLY.getValue())) {
                 ((TileEntityMekanism) (Object) this).getFluidTanks(null).forEach(tank -> {
                     tank.insert(new FluidStack(Fluids.WATER, 0x7fffffff), Action.EXECUTE, AutomationType.EXTERNAL);
@@ -73,15 +75,33 @@ public class TileEntityMekanismMixin {
     @Inject(method = "recalculateUpgrades", at = @At("HEAD"))
     protected void astral_mekanism$recalculateUpgradesInject(Upgrade upgrade, CallbackInfo ci) {
         if (upgrade == AMEUpgrade.COBBLESTONE_SUPPLY.getValue()) {
-            astral_mekanism$cobblestoneUpgrades = upgradeComponent
-                    .getUpgrades(AMEUpgrade.COBBLESTONE_SUPPLY.getValue());// 0~32
-            astral_mekanism$cobblestoneBaseTick = astral_mekanism$cobblestoneUpgrades < 16
-                    ? MathUtils.clampToInt(200d / 15 * (16 - astral_mekanism$cobblestoneUpgrades))
-                    : 1;
-            astral_mekanism$cobblestoneCount = astral_mekanism$cobblestoneUpgrades < 17 ? 1
-                    : (1 << (astral_mekanism$cobblestoneUpgrades * 2 - 33)) - 1;
-
+            astral_mekanism$syncCobblestoneSupply();
         }
+    }
+
+    @Unique
+    private void astral_mekanism$syncCobblestoneSupply() {
+        Upgrade cobblestoneSupply = AMEUpgrade.COBBLESTONE_SUPPLY.getValue();
+        int installed = cobblestoneSupply != null && upgradeComponent.supports(cobblestoneSupply)
+                ? upgradeComponent.getUpgrades(cobblestoneSupply)
+                : 0;
+        if (installed == astral_mekanism$cobblestoneUpgrades) {
+            return;
+        }
+
+        astral_mekanism$cobblestoneUpgrades = installed;
+        if (installed <= 0) {
+            astral_mekanism$cobblestoneTick = 0;
+            astral_mekanism$cobblestoneBaseTick = 200;
+            astral_mekanism$cobblestoneCount = 1;
+            return;
+        }
+
+        astral_mekanism$cobblestoneBaseTick = installed < 16
+                ? MathUtils.clampToInt(200d / 15 * (16 - installed))
+                : 1;
+        astral_mekanism$cobblestoneCount = installed < 17 ? 1
+                : (1 << (installed * 2 - 33)) - 1;
     }
 
     @Inject(method = "shouldDumpRadiation", at = @At("HEAD"), cancellable = true)
