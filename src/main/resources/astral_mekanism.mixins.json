@@ -14,6 +14,8 @@
 		"compactmekanismmachines.CompactBlockTypesMixin",
 		"emextras.EMExtraBlockTypesMixin",
 		"emextras.EMExtrasFactorySlotMixin",
+		"emextras.mekmm.EMExtraAdvancedFactoryBlockTypesMixin",
+		"emextras.mekmm.EMExtraMoreMachineBlockTypesMixin",
 		"evolvedmekanism.EMBlockTypesMixin",
 		"mekanism.blockentity.TileEntityAntiprotonicNucleosynthesizerMixin",
 		"mekanism.blockentity.TileEntityDigitalMinerMixin",
