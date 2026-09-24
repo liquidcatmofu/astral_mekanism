@@ -197,5 +197,4 @@ description='''${mod_description}'''
     config = "astral_mekanism.mixins.json"
     package = "com.takenokoshi.astral_mekanism.mixin"
 
-[[accessTransformers]]
-file="META-INF/accesstransformer.cfg"
+accessTransformers = ["META-INF/accesstransformer.cfg"]
