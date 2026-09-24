@@ -122,7 +122,7 @@ description='''${mod_description}'''
 [[dependencies.${mod_id}]]
     modId="emextras"
     mandatory=true
-    versionRange="[1.4.1,)"
+    versionRange="[1.5.0,)"
     ordering="NONE"
     side="BOTH"
 [[dependencies.${mod_id}]]

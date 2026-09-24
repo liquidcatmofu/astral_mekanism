@@ -12,7 +12,7 @@
 		"ae2.GenericStackInvMixin",
 		"ae2.PatternProviderReturnInventoryMixin",
 		"compactmekanismmachines.CompactBlockTypesMixin",
-		"emextras.EMExtrasBlockTypeMixin",
+		"emextras.EMExtraBlockTypesMixin",
 		"emextras.EMExtrasFactorySlotMixin",
 		"evolvedmekanism.EMBlockTypesMixin",
 		"mekanism.blockentity.TileEntityAntiprotonicNucleosynthesizerMixin",
