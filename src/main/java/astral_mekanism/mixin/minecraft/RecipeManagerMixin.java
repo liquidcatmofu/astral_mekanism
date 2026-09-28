@@ -50,7 +50,6 @@ public class RecipeManagerMixin {
             result.remove(Mekanism.rl("metallurgic_infusing/alloy/reinforced"));
             result.remove(Mekanism.rl("metallurgic_infusing/alloy/atomic"));
 
-
             result.remove(EMExtras.rl("alloying/circuits/basic_control_circuit"));
             result.remove(EMExtras.rl("alloying/circuits/advanced_control_circuit"));
             result.remove(EMExtras.rl("alloying/circuits/elite_control_circuit"));
@@ -64,6 +63,11 @@ public class RecipeManagerMixin {
             result.remove(AMEConstants.rl("alloy/infused"));
             result.remove(AMEConstants.rl("alloy/reinforced"));
             result.remove(AMEConstants.rl("alloy/atomic"));
+
+            result.remove(AMEConstants.rl("control_circuit/basic_0"));
+            result.remove(AMEConstants.rl("control_circuit/advanced_0"));
+            result.remove(AMEConstants.rl("control_circuit/elite_0"));
+            result.remove(AMEConstants.rl("control_circuit/ultimate_0"));
         }
         return result;
     }
