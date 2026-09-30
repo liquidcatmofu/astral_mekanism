@@ -23,33 +23,35 @@ public class RecipeManagerMixin {
     private Map<ResourceLocation, JsonElement> astral_mekanism$applyModify(
             Map<ResourceLocation, JsonElement> original) {
         LinkedHashMap<ResourceLocation, JsonElement> result = new LinkedHashMap<>(original);
-        String[] gemNames = { "coal", "diamond", "emerald", "fluorite", "lapis_lazuli", "quartz", "redstone" };
-        for (String name : gemNames) {
-            result.remove(Mekanism.rl("processing/" + name + "/to_ore"));
-            result.remove(Mekanism.rl("processing/" + name + "/to_deepslate_ore"));
-        }
-        String[] stoneNames = { "depthrock", "end_stone", "holystone", "netherrack", "shiverstone" };
-        for (String name : stoneNames) {
-            result.remove(EvolvedMekanism.rl("processing/fluorite/to_" + name + "_ore"));
-        }
-        result.remove(EvolvedMekanism.rl("control_circuit/creative"));
-        result.remove(EMExtras.rl("alloying/circuits/creative_control_circuit"));
-        result.remove(EvolvedMekanism.rl("chemical_tank/creative"));
-        result.remove(EvolvedMekanism.rl("fluid_tank/creative"));
-        result.remove(EvolvedMekanism.rl("bin/creative"));
-        result.remove(EvolvedMekanism.rl("energy_cube/creative"));
-        result.remove(ResourceLocation.fromNamespaceAndPath("avaritia", "mek_creative_bin"));
-        result.remove(ResourceLocation.fromNamespaceAndPath("avaritia", "mek_creative_chemical_tank"));
-        result.remove(ResourceLocation.fromNamespaceAndPath("avaritia", "mek_creative_energy_cube"));
-        result.remove(ResourceLocation.fromNamespaceAndPath("avaritia", "mek_creative_fluid_tank"));
-
-        result.remove(Mekanism.rl("processing/netherite/dust_to_ancient_debris"));
 
         if (AMEConfig.MAKE_RECIPE_DIFFICULT.get()) {
+            String[] gemNames = { "coal", "diamond", "emerald", "fluorite", "lapis_lazuli", "quartz", "redstone" };
+            for (String name : gemNames) {
+                result.remove(Mekanism.rl("processing/" + name + "/to_ore"));
+                result.remove(Mekanism.rl("processing/" + name + "/to_deepslate_ore"));
+            }
+
+            String[] stoneNames = { "depthrock", "end_stone", "holystone", "netherrack", "shiverstone" };
+            for (String name : stoneNames) {
+                result.remove(EvolvedMekanism.rl("processing/fluorite/to_" + name + "_ore"));
+            }
+
+            result.remove(EvolvedMekanism.rl("control_circuit/creative"));
+            result.remove(EMExtras.rl("alloying/circuits/creative_control_circuit"));
+            result.remove(EvolvedMekanism.rl("chemical_tank/creative"));
+            result.remove(EvolvedMekanism.rl("fluid_tank/creative"));
+            result.remove(EvolvedMekanism.rl("bin/creative"));
+            result.remove(EvolvedMekanism.rl("energy_cube/creative"));
+            result.remove(ResourceLocation.fromNamespaceAndPath("avaritia", "mek_creative_bin"));
+            result.remove(ResourceLocation.fromNamespaceAndPath("avaritia", "mek_creative_chemical_tank"));
+            result.remove(ResourceLocation.fromNamespaceAndPath("avaritia", "mek_creative_energy_cube"));
+            result.remove(ResourceLocation.fromNamespaceAndPath("avaritia", "mek_creative_fluid_tank"));
+
+            result.remove(Mekanism.rl("processing/netherite/dust_to_ancient_debris"));
+
             result.remove(Mekanism.rl("metallurgic_infusing/alloy/infused"));
             result.remove(Mekanism.rl("metallurgic_infusing/alloy/reinforced"));
             result.remove(Mekanism.rl("metallurgic_infusing/alloy/atomic"));
-
 
             result.remove(EMExtras.rl("alloying/circuits/basic_control_circuit"));
             result.remove(EMExtras.rl("alloying/circuits/advanced_control_circuit"));
@@ -64,6 +66,11 @@ public class RecipeManagerMixin {
             result.remove(AMEConstants.rl("alloy/infused"));
             result.remove(AMEConstants.rl("alloy/reinforced"));
             result.remove(AMEConstants.rl("alloy/atomic"));
+
+            result.remove(AMEConstants.rl("control_circuit/basic_0"));
+            result.remove(AMEConstants.rl("control_circuit/advanced_0"));
+            result.remove(AMEConstants.rl("control_circuit/elite_0"));
+            result.remove(AMEConstants.rl("control_circuit/ultimate_0"));
         }
         return result;
     }
